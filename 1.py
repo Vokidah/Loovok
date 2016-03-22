@@ -3,12 +3,17 @@ __author__ = 'vokidah'
 # fuser -k 5000/tcp
 from flask_bootstrap import Bootstrap
 from flask import Flask, render_template
-app = Flask(__name__)
-Bootstrap(app)
+from database_setup import Base, User
+from sqlalchemy import create_engine
 
+
+app = Flask(__name__)
+engine = create_engine('sqlite:///user.db')
+Base.metadata.bind = engine
 @app.route('/')
 def hello_world():
-    return render_template('hello_world.html')
+    user = User(name='Arsen', email='arsen.khadikov@gmail.com')
+    return "%s %s"%(user.name, user.email)
 
 if __name__ == '__main__':
-    app.run()
+    Bootstrap(app.run())
