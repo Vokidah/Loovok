@@ -19,10 +19,13 @@ session = DBSession()
 
 @app.route('/')
 def hello_world():
-    session.add(User(name='Arsen', email='arsen.khadikov@gmail.com'))
-    session.commit()
-    user = session.query(User).first()
-    return "%s %s"%(user.name, user.email)
+    #session.add(User(name='Arsen', email='arsen.khadikov@gmail.com'))
+    #session.add(User(name='Arsen', email='arsen.khadikov@gmail.com'))
+    #session.commit()
+    string = ""
+    for each in session.query(User).all():
+        string+=each.name + each.email+"\n"
+    return string
 
 
 
