@@ -8,5 +8,5 @@
 {% endblock %}
 
 {% block content %}
-  <h1>Hello, Bootstrap! Vovan i Vlad lohi!</h1>
+  <h1>Hello, Bootstrap! Vovan loh!</h1>
 {% endblock %}
