@@ -2,5 +2,5 @@
 {% block title %}This is an example page{% endblock %}
 
 {% block content %}
-  <h1>Hello, Bootstrap! Vityok i Arsen lohi!</h1>
+  <h1>Hello, Bootstrap! Vovan i Vlad  lohi bolshie!</h1>
 {% endblock %}
