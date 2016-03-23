@@ -19,15 +19,14 @@ session = DBSession()
 
 @app.route('/')
 def hello_world():
-    #session.add(User(name='Arsen', email='arsen.khadikov@gmail.com'))
-    #session.add(User(name='Arsen', email='arsen.khadikov@gmail.com'))
+    #session.add(User(nickname='Arsen', password='123', email='arsen.khadikov@gmail.com'))
+    #session.add(User(nickname='Vitya', password='123', email='vitya.sobol@gmail.com'))
+    #session.add(User(nickname='Vlad', password='123', email='vlad.fedchenko@gmail.com'))
     #session.commit()
-    string = ""
-    for each in session.query(User).all():
-        string+=each.name + each.email+"\n"
-    return string
+    users = session.query(User).all()
+    return render_template('hello_world.html', users=users)
 
 
 
 if __name__ == '__main__':
-    Bootstrap(app.run())
+    Bootstrap(app.run(debug=True))

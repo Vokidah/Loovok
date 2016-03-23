@@ -1,6 +1,14 @@
-{% extends "bootstrap/base.html" %}
-{% block title %}This is an example page{% endblock %}
+<html>
+    <head>
 
-{% block content %}
-  <h1>Hello, Bootstrap! Vityok i Arsen lohi!</h1>
-{% endblock %}
+    </head>
+    <body>
+        {% block content %}
+          <h1>Hello, Bootstrap!</h1>
+            {% for user in users %}
+                {{ user.nickname }}
+                {{ user.email }}
+            {% endfor %}
+        {% endblock %}
+    </body>
+</html>
