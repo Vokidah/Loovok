@@ -25,11 +25,17 @@ def registration():
         session.add(newUser)
         session.commit()
         return redirect(url_for('hello_world'))
-    
-@app.route('login', methods=[])
-def login():
+
+#@app.route('login', methods=[])
+#def login():
+
+@app.route('/users/JSON')
+def restaurantsJSON():
+    users = session.query(User).all()
+    return jsonify(users=[u.serialize for u in users])
 
 
+@app.route('/users')
 @app.route('/')
 def hello_world():
     #session.add(User(nickname='Arsen', password='123', email='arsen.khadikov@gmail.com'))
