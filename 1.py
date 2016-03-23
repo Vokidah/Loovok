@@ -16,6 +16,7 @@ Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
+
 @app.route('/registration', methods=['GET', 'POST'])
 def registration():
     if request.method == 'GET':
@@ -29,22 +30,28 @@ def registration():
 #@app.route('login', methods=[])
 #def login():
 
-@app.route('/users/JSON')
+@app.route('/user/JSON')
 def restaurantsJSON():
     users = session.query(User).all()
     return jsonify(users=[u.serialize for u in users])
 
 
-@app.route('/users')
+@app.route('/user/<int:user_id>')
+def show_user(user_id):
+    user = session.query(User).filter_by(id=user_id).one()
+    return render_template('show_user.html', user=user)
+
+
+@app.route('/user')
 @app.route('/')
 def hello_world():
     #session.add(User(nickname='Arsen', password='123', email='arsen.khadikov@gmail.com'))
     #session.add(User(nickname='Vitya', password='123', email='vitya.sobol@gmail.com'))
     #session.add(User(nickname='Vlad', password='123', email='vlad.fedchenko@gmail.com'))
     #session.commit()
-   users = session.query(User).all()
-   return render_template('hello_world.html', users=users)
-   # return ""
+    users = session.query(User).all()
+    return render_template('hello_world.html', users=users)
+    # return ""
 
 
 
