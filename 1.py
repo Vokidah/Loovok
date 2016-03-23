@@ -23,8 +23,9 @@ def hello_world():
     #session.add(User(nickname='Vitya', password='123', email='vitya.sobol@gmail.com'))
     #session.add(User(nickname='Vlad', password='123', email='vlad.fedchenko@gmail.com'))
     #session.commit()
-    users = session.query(User).all()
-    return render_template('hello_world.html', users=users)
+   users = session.query(User).all()
+   return render_template('hello_world.html', users=users)
+   # return ""
 
 
 
