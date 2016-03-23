@@ -2,7 +2,7 @@ __author__ = 'vokidah'
 
 # fuser -k 5000/tcp
 from flask_bootstrap import Bootstrap
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, jsonify, url_for
 from database_setup import Base, User
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -15,6 +15,19 @@ engine = create_engine('sqlite:///user.db')
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
+
+@app.route('/registration', methods=['GET', 'POST'])
+def registration():
+    if request.method == 'GET':
+        return render_template('registration.html')
+    else:
+        newUser = User(nickname=request.form['nickname'], email=request.form['email'], password=request.form['password'])
+        session.add(newUser)
+        session.commit()
+        return redirect(url_for('hello_world'))
+    
+@app.route('login', methods=[])
+def login():
 
 
 @app.route('/')
