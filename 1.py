@@ -50,14 +50,18 @@ def login():
     if request.method == 'GET':
         return render_template('sign-in.html')
     else:
-        nickname = request.form['nickname']
-        password = request.form['password']
-        #need to catch errors
-        user = db_session.query(User).filter_by(nickname=nickname).one()
-        if user and password == user.password:
-            return redirect(url_for('hello_world'))
-        else:
+        try:
+            nickname = request.form['nickname']
+            password = request.form['password']
+            #need to catch errors
+            user = db_session.query(User).filter_by(nickname=nickname).one()
+            if user and password == user.password:
+                return redirect(url_for('hello_world'))
+            else:                
+                return redirect(url_for('login'))
+        except:            
             return redirect(url_for('login'))
+
 
 
 @app.route('/registration', methods=['GET', 'POST'])
