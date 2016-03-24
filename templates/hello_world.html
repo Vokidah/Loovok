@@ -6,9 +6,10 @@
         {% block content %}
           <h1>Hello, Bootstrap!</h1>
             {% for user in users %}
-                {{ user.nickname }}
-                {{ user.password }}
-                {{ user.email }} </br>
+                User name : {{ user.nickname }} </br>
+                {{ user.id }}
+                User email : {{ user.email }} </br>
+                </br>
             {% endfor %}
         {% endblock %}
     </body>

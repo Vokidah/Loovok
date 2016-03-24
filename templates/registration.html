@@ -1,11 +1,37 @@
+<html>
+  <head>
+      <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='dist/css/bootstrap.min.css' )}}">
+      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='docs/examples/signin/signin.css' )}}">
+  </head>
+  <body>
 {% block content %}
-    <form action="/" method = 'post'>
-        <p>Nickname:</p>
-            <input type ='text' size='30' name='nickname'>
-        <p>Email:</p>
-            <input type ='text' size='30' name='email'>
-        <p>Password:</p>
-            <input type ='password' size='30' name='password'>
-        <input type='submit' value='Create'>
-    </form>
+
+    <div class="container">
+
+      <form class="form-signin">
+        <h2 class="form-signin-heading">Please sign in</h2>
+
+          <label class="sr-only"></label>
+          <input type="email" class="form-control" name="email" placeholder="Email address" required autofocus>
+
+
+          <label class="sr-only"></label>
+          <input type="email" class="form-control" name="nickname" placeholder="Nickname" required>
+
+
+          <label class="sr-only"></label>
+          <input type="password"class="form-control" name="password "placeholder="Password" required>
+
+
+          <label class="sr-only"></label>
+          <input type="password" class="form-control" name="verify_password "placeholder="Verify password" required>
+
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      </form>
+
+    </div> <!-- /container -->
 {% endblock %}
+</body>
+
