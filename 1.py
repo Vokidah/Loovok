@@ -50,10 +50,11 @@ def registration():
     if request.method == 'GET':
         return render_template('registration.html')
     else:
-        nickname = request.form['nickname'] 
+        nickname = request.form['nickname']
         email = request.form['email']
         password = request.form['password']
         verify_password = request.form['verify_password']
+        #return "%s %s %s %s"%(nickname, email, password, verify_password)
         if valid_username(nickname) and valid_email(email) and valid_password(password) and valid_verify(password, verify_password):
             newUser = User(nickname=nickname, email=email, password=password)
             db_session.add(newUser)
