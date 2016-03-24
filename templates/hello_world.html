@@ -1,16 +1,14 @@
-<html>
-    <head>
+{% extends "base.html" %}
 
-    </head>
-    <body>
-        {% block content %}
-          <h1>Hello, Bootstrap!</h1>
+{% block content %}
+
+      <div class="starter-template">
+          <h1>Users:</h1>
             {% for user in users %}
-                User name : {{ user.nickname }} </br>
-                {{ user.id }}
-                User email : {{ user.email }} </br>
+                <p class="lead">{{ user.nickname }}({{ user.email }}) </p>
                 </br>
             {% endfor %}
-        {% endblock %}
-    </body>
-</html>
+      </div>
+
+
+{% endblock %}

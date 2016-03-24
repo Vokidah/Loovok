@@ -45,6 +45,21 @@ def valid_verify(password, verify):
     return False
 
 
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'GET':
+        return render_template('sign-in.html')
+    else:
+        nickname = request.form['nickname']
+        password = request.form['password']
+        #need to catch errors
+        user = db_session.query(User).filter_by(nickname=nickname).one()
+        if user and password == user.password:
+            return redirect(url_for('hello_world'))
+        else:
+            return redirect(url_for('login'))
+
+
 @app.route('/registration', methods=['GET', 'POST'])
 def registration():
     if request.method == 'GET':
@@ -76,6 +91,14 @@ def show_user(user_id):
     user = db_session.query(User).filter_by(id=user_id).one()
     return render_template('show_user.html', user=user)
 
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
+
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
 
 @app.route('/user')
 @app.route('/')
